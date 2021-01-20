@@ -51,8 +51,8 @@
             return answer; // Function will retrieve answer set by the previous line of code
         }
 
-        function moleAppears(time) {
-            timeRef = setTimeout(function() {
+        function moleAppears(time) { // Function takes time as an argument to execute the inner function
+            timeRef = setTimeout(function() { // Inner function will execute within the time limit as given by time
                 moleElement.style.display = 'block'; // Display the mole image to have a block display
                 moleElement.style.top = getRandom() + 'px'; // Setting the y-coordinate of mole
                 moleElement.style.left = getRandom() + 'px'; // Setting the x-coordinate of mole
@@ -65,8 +65,8 @@
 
         }
 
-        function moleDisappears(time) {
-            timeRef = setTimeout(function() {
+        function moleDisappears(time) { // Takes time as an argument to execute the inner funciton
+            timeRef = setTimeout(function() { // Inner function will execute within the time limit as given by the time parameter
                 const scoreElement = document.querySelector('#score'); // Setting the scoreElement with the id "score"
                 moleElement.style.display = 'none'; // To make the mole disappear
                 scoreElement.innerHTML = playerScore; // scoreElement on the html will reflect the playerScore
@@ -89,7 +89,7 @@
 
 
     <style>
-    h1 { color: grey }
+    h1 { color: blue; }
     </style>
 
   
