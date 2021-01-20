@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #mole { /* Setting the element (which is the img tag) with the id "mole" to have these properties */
+            height: 100px;
+            position: absolute;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <!-- To start a new game every time, you have to refresh the page -->
+
+    <h1>Score <span id="score"></span></h1> <!-- Prints out score on page -->
+
+    <img id="mole" src="https://confluencenutrition.com/wp-content/uploads/2017/12/whackamole.jpg
+    "/> <!-- Shows image of mole on page -->
+
+    <script>
+
+        const second = 1000; // Set second to be a constant of 1000
+        const timeLimit = second * 8; // Scaling the score
+        let timeRef; // timeRef, short for time reference, is created but is not set to anything yet
+
+        setTimeout(function() { // Set the game to end with a score after the set time limit
+            clearTimeout(timeRef); // Clears the timer
+            alert('you score was ' + playerScore); // Alerts you your score
+            playerScore = 0; // Resets score back to zero
+            moleDisappears(); // The mole image disappears
+        }, timeLimit);
+
+        let playerScore = 0; // Created and set playerScore to be 0 by default
+        const moleElement = document.querySelector('#mole'); // Setting moleElement to be the id "mole"
+        let speed = 1000; // Created and set speed to 1000
+        moleElement.addEventListener('click', () => { // Should the player successfully click on the moleElement set with the id "mole", the player gains 40 points
+            playerScore += 40
+        });
+
+        function getRandom() { // Function will create an generated number from 1-400
+            
+            // (Math.random() * 400) returns a randomized decimal number from 0-400
+            // Math.floor rounds down the decimal number to an whole number; e.g. Math.floor(4.03) = 4
+            const answer = Math.floor(Math.random() * 400);
+
+            return answer; // Function will retrieve answer
+        }
+
+        function moleAppears(time) {
+            timeRef = setTimeout(function() {
+                moleElement.style.display = 'block'; // Display the mole image to have a block display
+                moleElement.style.top = getRandom() + 'px'; // Setting the y-coordinate of mole
+                moleElement.style.left = getRandom() + 'px'; // Setting the x-coordinate of mole
+                moleDisappears(speed - playerScore);
+                console.log(getRandom())
+            }, time); 
+        }
+
+        function moleIsHit() { // Function was not used since there is nothing within the curly brackets
+
+        }
+
+        function moleDisappears(time) {
+            timeRef = setTimeout(function() {
+                const scoreElement = document.querySelector('#score');
+                moleElement.style.display = 'none';
+                scoreElement.innerHTML = playerScore;
+                moleAppears(speed - playerScore);
+            }, time);
+     
+        }
+
+        // When setting time, the computer will always read milliseconds instead of seconds
+        moleDisappears(1000); // Mole will disappear every second as 1 second equals to 1000 miliseconds
+        
+        
+    
+    </script>
+
+
+
+
+
+
+
+    <style>
+    h1 { color: grey }
+    </style>
+
+  
+
+
+    
+</body>
+</html>
