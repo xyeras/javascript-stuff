@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     
+     div {
+
+         display: inline-block;
+         width: 400px;
+         height: 400px;
+     }
+    </style>
+</head>
+<body>
+
+    <!-- Note: this code produces two buttons, one in line 22 and one in line 29 -->
+
+    <h1>Build a square workshop</h1>
+   <button onclick="howToBuildASquare()">Build A Square</button> <!-- When you click on the button, the function howToBuildASquare is activated -->
+  
+    <script>
+
+
+            // How to build an element
+            const button = document.createElement('button'); // You create the button element
+            document.body.appendChild(button); // This places the button within the body of the document so that you can see the button
+
+            // How to put text inside an element;
+            button.innerHTML = 'Build a Square'; // Puts the text inside of the second button
+
+            // How to add a listener to an element;
+            button.addEventListener('click', howToBuildASquare ); // When you click on the button, the function will execute
+                                                                    // This similiar to the first button in line 22 
+
+
+            //  How to build a function
+        function howToBuildASquare() { // Created a function to make a square
+            // How to build an element
+            const element = document.createElement('div'); // This creates the element div
+            document.body.appendChild(element); // This places the element div onto the page without its size and color
+
+
+            const size = prompt('How big?'); // This is asking the user to put in a size for the square
+
+            // How to Style an element
+            // This is where the color and size of the square is determined
+            element.style.height = size + 'px'; // Size is obtained from line 46 to set height of the square called "element"
+            element.style.width = size + 'px'; // Size is obtained from line 46 to set width of the square called "element"
+            element.style.backgroundColor = prompt('What color?'); // This sets the color of the square by asking user to put in a color
+    
+
+            // How to put text inside an element;
+            element.innerHTML = new Date(); // This puts the date inside of the square called "element"
+
+        
+            console.log(size); // This will print out the size in the console
+        }
+      
+    </script>
+
+
+</body>
+</html>

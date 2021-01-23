@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge</title>
+</head>
+<body>
+
+
+    <script>
+
+        function askForANumber() {
+            const numberString = prompt('yo, user give me a number');
+            const numberMaybe = parseInt(numberString);
+            if (isNaN(numberMaybe)) {
+                console.log('that is not a number!');
+                return askForANumber();
+            } else {
+                console.log('thank you');
+                return numberMaybe;
+            }
+        }
+
+        const number1 = askForANumber();
+        const number2 = askForANumber();
+        const number3 = askForANumber();
+        console.log(number1, number2);
+
+        if (number2 > number1) {
+            alert(number2);
+        } else {
+            alert(number1);
+        }
+
+        alert(Math.max(number1, number2, number3))
+
+    </script>
+    
+</body>
+</html>
