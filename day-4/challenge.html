@@ -10,30 +10,31 @@
 
     <script>
 
-        function askForANumber() {
-            const numberString = prompt('yo, user give me a number');
-            const numberMaybe = parseInt(numberString);
-            if (isNaN(numberMaybe)) {
-                console.log('that is not a number!');
-                return askForANumber();
-            } else {
-                console.log('thank you');
-                return numberMaybe;
+        function askForANumber() { // Created function to ask user to input number and to check if the input is a number
+            const numberString = prompt('yo, user give me a number'); // This will ask user to give a number
+            const numberMaybe = parseInt(numberString); // This will convert the input "numberString" into a number variable called "numberMaybe"; if the case the user puts in "eleven", it will return NaN (not a number)
+            if (isNaN(numberMaybe)) { // This checks if the input is not a number (NaN)
+                console.log('that is not a number!'); // if the input is not a number, the console will say "that is not a number"
+                return askForANumber(); // the function will execute again and again till the user puts in a number
+            } else { // this checks if the input is indeed a number
+                console.log('thank you'); // if so, the console will say "thank you"
+                return numberMaybe; // This will return the number from line 15
             }
         }
 
-        const number1 = askForANumber();
-        const number2 = askForANumber();
-        const number3 = askForANumber();
-        console.log(number1, number2);
+        const number1 = askForANumber(); // function will execute asking user for first number
+        const number2 = askForANumber(); // function will execute again asking user for second number
+        const number3 = askForANumber(); // function will execute again asking user for third number
+        console.log(number1, number2); // this will print out the two numbers in the console
 
-        if (number2 > number1) {
+        if (number2 > number1) { // if number2 is bigger than number1, it will alert user of number2
             alert(number2);
-        } else {
+        } else {                // default case if the "if" case fails, assuming number1 is greater than number2
             alert(number1);
         }
 
-        alert(Math.max(number1, number2, number3))
+        alert(Math.max(number1, number2, number3)) // This will alert the user of the highest number
+                                                    // Math.max can take in many variables
 
     </script>
     
