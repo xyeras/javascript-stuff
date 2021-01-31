@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+let back = '';
+
+function getProfile(profileName) {
+       
+
+          fetch('https://api.github.com/users/' + profileName)
+        .then(function(data) {
+            console.log(data);
+            return data.json();
+        })
+        .then(function(data){
+            console.log(data);
+            document.body.innerHTML = `
+            <button>Back</button>
+            <h1>
+                <img style="width: 100px" src="${data.avatar_url}"/>
+                ${data.company}/ ${data.login}
+                </h1>
+            
+                <button>Followers</button>
+                <hr>
+            
+            `;
+
+            const backButton = document.body.querySelectorAll('button')[0];
+            backButton.addEventListener('click', function() {
+                console.log('back', back);
+                getProfile(back);
+            })
+            const button = document.body.querySelectorAll('button')[1];
+            console.log(button);
+
+            button.addEventListener('click', function() {
+                back = profileName;
+                fetch(data.followers_url).then((data) => data.json())
+                .then(data => {
+
+                    console.log(data);
+
+                    document.body.innerHTML += ` ${data.map( followers => {
+                        return `<img width="100" src="${followers.avatar_url}"> ${followers.login} <br>`
+                    } ).join('')} `;
+
+                    document.querySelectorAll('img').forEach( (img, index) => {
+                        console.log(img, index);
+                        console.log(img)
+                        img.addEventListener('click', function() {
+                            getProfile(data[index - 1].login)
+                        })
+                    })
+                });
+            });
+
+        })
+        .catch(function(error) {
+
+        });
+}
+
+const profileName = prompt('what profile');
+
+getProfile(profileName);
+    
+
+
+
+
+
+
+
+
+// function to handle success
+
+
+
+        // fetch('https://cat-fact.herokuapp.com/facts')
+        // .then(function(data) {
+        //     console.log(data);
+        //     return data.json()
+        // })
+        // .then(function(data) {
+        //     console.log(data);
+        // })
+
+
+  
+
+// goGetUsers();
+// console.log('this is a test')
+
+//         async function goGetUsers() {
+//             console.log('Can you get those users');
+
+//             const users = await new Promise(function(resolve, reject) {
+
+//                 setTimeout( function() {
+//                     resolve([{username: 'a'}, {username: 'b'}])
+//                 },3000); 
+
+//             }).then(function(data) {
+//                 console.log('next')
+//                 return data;
+//             })
+
+        
+
+
+//             console.log('thank you for those users', users);
+            
+//         }
+       
+
+
+
+
+
+
+
+        // console.log( 'i need users');
+
+
+        // const myPromise = new Promise(function(resolve, reject) {
+
+        //     // reject(new Error('no Internets'))
+        //     setTimeout( function() {
+        //         resolve([{username: 'a'}, {username: 'b'}, {username: 'c'}])
+        //     }, 3000);
+        // });
+
+        // const myPromise2 = new Promise(function(resolve, reject) {
+        //     setTimeout(function() {
+        //         resolve([{text: 'a'}, {text: 'b'}, {text: 'c'}])
+        //     }, 1000)
+        // })
+
+        // Promise.all([myPromise, myPromise2])
+        // .then(function(data) {
+        //     console.log('here is the data you wanted', data)
+        //     return data[0].map( (item, index) => { return [item, data[1][index] ]  })
+        // })
+        // .then(function(data) {
+        //     console.log('what now?', data)
+        // })
+        // .then(function() {
+        //     console.log('and then what now?')
+        // })
+        // .then(function() {
+        //     console.log('How bout now?')
+        // })
+        // .finally(function() {
+        //     console.log('finally')
+        // })
+        // .catch(function(e) {
+        //     console.log(e);
+        // })
+    
+
+        // console.log('thanks for those users');
+
+    
+    
+
+
+
+
+
+
+
+        // console.log('i am first');
+
+        // function iAmAFunction() {
+        //     console.log('I am second')
+        // }
+
+        // setTimeout(function() {
+        //     console.log('i am third')
+        // }, 5000)
+
+        // console.log('i am fourth');
+
+        // iAmAFunction();
+    </script>
+</body>
+</html>

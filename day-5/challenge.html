@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+
+        function acceptsPassword( passwordParameter ) {
+            my1svariable = '';
+    
+            function validateNotANumber(password) {
+                return isNaN( parseInt(password) );
+            }
+            function validateLength(passwordLength) {
+                return passwordLength >= 6 && passwordLength <= 20
+            }            
+            let isLengthOk = validateLength(passwordParameter.length)
+            let isValidateNoNumber = validateNotANumber(passwordParameter);
+            isLengthOk && isValidateNoNumber ? alert('You passed.') : alert('You did not pass.');
+        }
+
+        acceptsPassword('catjlsjfkljsk');
+
+    </script>
+    
+</body>
+</html>

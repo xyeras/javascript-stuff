@@ -1,0 +1,13 @@
+button {
+    margin: 40px;
+}
+
+.active {
+    background-color: blue;
+    font-size: larger;
+    color: white;
+}
+.disabled {
+    color: grey;
+    background-color: darkgray;
+}
