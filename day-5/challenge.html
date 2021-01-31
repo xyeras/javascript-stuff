@@ -10,21 +10,29 @@
 
     <script>
 
-        function acceptsPassword( passwordParameter ) {
-            my1svariable = '';
+        function acceptsPassword( passwordParameter ) { // created function called "acceptsPassword" that takes the input called "passwordParameter"
+            my1svariable = ''; // set variable to be a empty char
     
-            function validateNotANumber(password) {
-                return isNaN( parseInt(password) );
+            function validateNotANumber(password) { // created inner function called "validateNotANumber" to check if...
+                                                    // first character of the string is a letter (not an number)
+                                                    // but not sure if this case covers cases like "," , ";" , "." , etc.
+                return isNaN( parseInt(password) ); // the function will return false if the password contains a integer as the first character
+                                                    // otherwise true
+                                                    // parseInt covers the string into an integer assuming if the first character is NaN
             }
-            function validateLength(passwordLength) {
-                return passwordLength >= 6 && passwordLength <= 20
+            function validateLength(passwordLength) { // created inner function called "validateLength" to check if the passwordLength is between 6-20 characters
+                return passwordLength >= 6 && passwordLength <= 20 // the first condition checks if the length is at least 6
+                                                                // second condition checks if the length caps at 20 and no more
+                                                                // if both conditions are true then the function will return true
             }            
-            let isLengthOk = validateLength(passwordParameter.length)
-            let isValidateNoNumber = validateNotANumber(passwordParameter);
-            isLengthOk && isValidateNoNumber ? alert('You passed.') : alert('You did not pass.');
+            let isLengthOk = validateLength(passwordParameter.length) // the inner function is called to validate length of password
+            let isValidateNoNumber = validateNotANumber(passwordParameter); // the inner function is called to validate if it is not a number
+            isLengthOk && isValidateNoNumber ? alert('You passed.') : alert('You did not pass.'); // assuming if both conditions passed then it
+                                                                                                    // alerts "you passed"
+                                                                                                    // if not alerts "you did not pass"
         }
 
-        acceptsPassword('catjlsjfkljsk');
+        acceptsPassword('catjlsjfkljsk'); // passing this input as "passwrodParameter"
 
     </script>
     
