@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <style>
+        th, tr , td{ border: 1px solid black}
+        .active {
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+   
+
+
+
+    <script>
+    
+        function createTable() {
+            const element = document.createElement('table');
+            document.body.appendChild(element);
+            return element;
+        }
+
+        function createTableHead(table) {
+            const element = document.createElement('thead');
+            table.appendChild(element);
+            return element;
+        }
+
+        function createTableBody(table) {
+            const element = document.createElement('tbody');
+            table.appendChild(element);
+            return element;
+        }
+
+        function createTableRow(parent) {
+            const element = document.createElement('tr');
+            parent.appendChild(element);
+            return element;
+        }
+
+        function createTableTh(parent) {
+            const element = document.createElement('th');
+            parent.appendChild(element);
+            return element;
+        }
+
+        function createTableTd(parent) {
+            const element = document.createElement('td');
+            parent.appendChild(element);
+            return element;
+        }
+
+     
+
+        // execution
+        function createGame(team1, team2) {
+            currentInning = null;
+            const table = createTable();
+            const header = createTableHead(table);
+            const body = createTableBody( table );
+            const trH = createTableRow(header);
+            const heading1 = createTableTh(trH);
+            heading1.innerHTML = 'Team Name';
+            const trB1 = createTableRow( body );
+            data1 = createTableTd(trB1);
+            data1.innerHTML = team1;
+            const trB2 = createTableRow( body );
+            data2 = createTableTd(trB2);
+            data2.innerHTML = team2;
+
+            function addInning(inning) {
+                const heading1 = createTableTh(trH);
+                heading1.innerHTML = inning;
+                data1 = createTableTd(trB1);
+                data1.innerHTML = 0;
+                data2 = createTableTd(trB2);
+                data2.innerHTML = 0;
+            
+                if (currentInning) {
+                    currentInning.classList.remove('active');
+                }
+                currentInning = data1;
+                currentInning.classList.add('active')
+            }
+
+            function nextTeam() {
+                if (currentInning) {
+                    currentInning.classList.remove('active');
+                }
+                currentInning = data2;
+                currentInning.classList.add('active')
+            }
+
+            function addOne() {
+                currentInning.innerHTML = Number(currentInning.innerHTML) + 1;
+            }
+            let inning = 0;
+            const game = { addInning, addOne , nextTeam};
+            addButtons(game);
+
+                   
+        function addButtons(game) {
+                const button1 = document.createElement('button');
+            button1.innerHTML = 'Add Inning';
+            document.body.appendChild(button1);
+            button1.addEventListener('click', function() {
+                game.addInning(inning += 1);
+            });
+
+            const button2 = document.createElement('button');
+            button2.innerHTML = 'Add One';
+            document.body.appendChild(button2);
+            button2.addEventListener('click', function() {
+                game.addOne();
+            });
+
+            const button3 = document.createElement('button');
+            button3.innerHTML = 'Next Team';
+            document.body.appendChild(button3);
+            button3.addEventListener('click', function() {
+                game.nextTeam();
+            });
+
+        }
+            return game;
+        }
+    
+       
+
+  
+        
+        const game1 = createGame('Giants', 'Dodgers');
+    
+        const game2 = createGame('BW', 'GW');
+     
+
+    </script>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

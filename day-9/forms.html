@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .hidden {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class='hidden'>
+        <span>Hello World</span> <button onclick='logout()'>Log out</button>
+    </h1>
+
+    <form name='myform'>
+        <input type="text" placeholder="Username" name='username'>
+        <input type="password" placeholder='Password' name='password'>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label>
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label>
+  <label for="favcolor">Select your favorite color:</label>
+  <input type="color" id="favcolor" name="favcolor">
+        <input type="submit" >
+    </form>
+
+    <script>
+        const form1 = document.querySelector('form');
+        const form2 = document.forms[0];
+        const form3 = document.forms['myform']
+        console.log(form1, form2, form3);
+
+        form1.addEventListener('submit',function(event) {
+            event.preventDefault();
+            console.log(event);
+            const username = form1['username'].value;
+            const password = form1['password'].value;
+            console.log(username, password, form1['vehicle1'].value, form1['gender'].vlaue);
+            
+            if (username.length < 5) {
+                alert('username is too short!')
+            }
+            if (password.length < 5) {
+                alert('password is too short!')
+            }
+
+            fetch('https://api.github.com/users/' + username).then((data) => {
+                console.log(data)
+                return data.json();
+            } ).then( data => {
+                const h1 = document.querySelector('h1');
+                h1.classList.remove('hidden')
+                form1.classList.add('hidden');
+                h1.querySelector('span').innerHTML = data.login;
+                console.log('data', data);
+            });
+
+
+        })
+
+
+        function logout() {
+            document.forms[0].reset();
+            const h1 = document.querySelector('h1');
+            h1.classList.add('hidden');
+            document.forms[0].classList.remove('hidden');
+        }
+
+    </script>
+    
+</body>
+</html>
