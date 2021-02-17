@@ -1,0 +1,36 @@
+body {
+    background-color: lightcoral;
+    height: 100vh;
+}
+
+.ball {
+
+    height : 90vw;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.square {
+    height : 40vw;
+    width: 40vw;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    padding: 10%;
+    text-align: center;
+}
+
+.question {
+    color: green;
+    margin: 20px;
+}
+.answer {
+    color: red;
+}
+
+.hide {
+    opacity: 0;
+}
